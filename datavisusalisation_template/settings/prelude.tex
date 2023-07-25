@@ -1,17 +1,4 @@
-\usepackage[italian]{babel}
 \usepackage{graphicx}
-\usepackage[utf8]{inputenc}
-
-%% links
-\usepackage{hyperref}
-\hypersetup{
-	colorlinks=true,
-	linkcolor=blue,
-	filecolor=magenta,      
-	urlcolor=cyan,
-	pdftitle={\titolo},
-	pdfpagemode=FullScreen,
-}
 
 \graphicspath{ {./img/} }
 
@@ -40,3 +27,12 @@
 	breaklines=true, % sets automatic line breaking
 	breakatwhitespace=false, 
 }
+
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage[colorlinks=false]{hyperref}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{ragged2e}
+\usepackage{subfigure}
+\newcolumntype{L}{>{\RaggedRight\hangafter=1\hangindent=0em}X}

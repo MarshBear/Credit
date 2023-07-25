@@ -1,0 +1,15 @@
+# Fdb version 4
+["pdflatex"] 1690282210 "/Users/dinghuan/Downloads/credit_card_fraud/datavisusalisation_template/settings/prelude.tex" "prelude.pdf" "prelude" 1690282211 2
+  "/Users/dinghuan/Downloads/credit_card_fraud/datavisusalisation_template/settings/prelude.tex" 1690282208 1347 cfa04024b30995167f4e7fdd6cf66d65 ""
+  "/usr/local/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
+  "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmtt10.tfm" 1136768653 768 1321e9409b4137d6fb428ac9dc956269 ""
+  "/usr/local/texlive/2023/texmf-dist/web2c/texmf.cnf" 1677365944 40745 87bb86a62d462f93a1efc6b0c65c872e ""
+  "/usr/local/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt" 1690218321 7883452 1982fd0fa5575ea8119d14141403a32d ""
+  "/usr/local/texlive/2023/texmf.cnf" 1678822455 577 1b2b1af17af2508fb20dd85783af4050 ""
+  "prelude.aux" 1690282210 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
+  "prelude.tex" 1690282208 1347 cfa04024b30995167f4e7fdd6cf66d65 ""
+  (generated)
+  "prelude.aux"
+  "prelude.log"
+  "prelude.pdf"
+  (rewritten before read)

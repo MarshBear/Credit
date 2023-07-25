@@ -124,7 +124,87 @@ where $\alpha$ is the learning rate.
 However, since the dataset is highly unbalanced, we may need to apply some techniques to deal with the class imbalance problem, such as oversampling, undersampling or using a weighted cost function. These techniques can help improve the performance of the model and reduce the bias towards the majority class.
 
 
+\subsection{Deep Neural Network (DNN)}
+In this subsection, we use DNN to develop the classifier for the credit card fraud detection problem. The predictor can be written as follows,
+\[\mathbf{y} = \mathcal{F}_n\cdots\mathcal{F}_1(\mathbf{A}_1\mathbf{x}+b_1)\]
+where $\mathcal{F}_k, k=1,\cdots,n$ are non-linear functions. The primary goal is to design a model that can effectively classify credit card transactions as either legitimate or fraudulent based on historical transaction data.
 
+We set the 30 variables, including 'Time' and 'Amount', as input, and the probability predition as the output, i.e.
+\[\mathrm{NN}_\theta(\mathbf{x})\approx P(\mbox{fraudulent transaction with variables } \mathbf{x}),\]
+where $\mathrm{NN}_\theta$ is a sequential neural network consisting of 4 kinds of layers with parameter $\theta$:
+\begin{itemize}
+	\item Input layer: the input shape is determined by the number of features in the training data.
+	\item Batch normalization layer: it helps stabilize training by normalizing the outputs of the previous layer, reducing internal covariate shift.
+	\item Dropout layer: randomly drops a fraction of neurons during training, which helps prevent overfitting and improves generalization.
+	\item Output layer: the final dense layer has 1 neuron, using the sigmoid activation function, which squashes the output between 0 and 1, making it suitable for binary classification problems.
+\end{itemize}
+The whole structure of the NN is shown in Table \ref{tab:NN_str}
+
+\begin{table}[htbp]
+    \centering
+    \caption{The mean squared error for different regression models.}
+    \begin{tabularx}{\textwidth}{ p{5cm} p{6cm} L }
+\toprule
+    Layer&Hyperparameter&\#Parameters\\
+\midrule
+    Dense&256 neurons, ReLU activation&7936\\
+	Batch Normalization&&1024\\
+	Dropout&dropout rate 0.3&0\\
+	Dense&256 neurons, ReLU activation&65792\\
+	Batch Normalization&&1024\\
+	Dropout&dropout rate 0.3&0\\
+	Dense&256 neurons, ReLU activation&65792\\
+	Batch Normalization&&1024\\
+	Dropout&dropout rate 0.3&0\\
+	Dense&1 neuron, sigmoid activation&257\\
+\bottomrule
+    \end{tabularx}
+    \label{tab:NN_str}
+\end{table}
+
+We use the binary cross-entropy as the loss function, that is 
+\[J(\theta)=-[y\log(\mathrm{NN}_\theta(\mathbf{x}))+(1-y)\log(1-\mathrm{NN}_\theta(\mathbf{x}))],\]
+where $y$ denotes the true value and $\mathrm{NN}_\theta(\mathbf{x})$ denotes the output of the model. and the model is compiled with the Adam optimizer using a learning rate of 1e-4.
+The results for the model are shown in Figure \ref{fig:DNNr}.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\linewidth]{DNNr.png}
+	\caption{Results for DNN predictor}
+	\label{fig:DNNr}
+\end{figure}
+
+
+
+\subsection{XGBoost}
+
+In this section, we explore the implementation of an XGBoost model for credit card fraud detection. XGBoost is an advanced gradient boosting algorithm known for its high performance and effectiveness in various machine learning tasks.
+
+The XGBoost model does not have a specific architecture like neural networks. Instead, it is an ensemble learning method that combines multiple weak structures, i.e. decision trees, to create a strong predictive model. The model employs gradient boosting to iteratively improve the performance of the decision trees, where in each iteration, the model focuses on the misclassified data points to build new trees that correct the errors of the previous ones.
+
+We plot the AUC-ROC curve afterwards to show the validation of the model, as shown in Figure \ref{fig:XGBoost}.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\linewidth]{xgboost.pdf}
+	\caption{AUC-ROC curve for XGBoost predictor}
+	\label{fig:XGBoost}
+\end{figure}
+
+\subsection{CatBoost}
+
+Further more, we explore the implementation of the CatBoost model for credit card fraud detection. CatBoost is a high-performance gradient boosting algorithm, known for its exceptional accuracy, efficient handling of categorical features, and robustness against overfitting.
+
+Like XGBoost, CatBoost is based on the gradient boosting framework and works by sequentially building an ensemble of weak decision trees. The central principle of CatBoost revolves around addressing the challenges posed by categorical features and optimizing the overall model performance. Compared with XGBoost, CatBoost natively handles categorical features without the need for preprocessing the lable into one-hot code. It automatically processes categorical data during training, providing a significant advantage in our detection problem. 
+
+CatBoost introduces ordered boosting, which sorts the categorical levels, improving stability and performance compared with XGBoost. Besides, CatBoost uses symmetric trees for faster computations and also has measures to prevent overfitting. For these reasons, we hope that CatBoost can predict better in our problem, which can be also validated in Figure \ref{fig:catboost}.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\linewidth]{catboost.pdf}
+	\caption{AUC-ROC curve for CatBoost predictor}
+	\label{fig:catboost}
+\end{figure}
 
 
 
